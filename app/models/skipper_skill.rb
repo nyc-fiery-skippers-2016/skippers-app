@@ -1,3 +1,4 @@
 class SkipperSkill < ActiveRecord::Base
-  # Remember to create a migration!
+  belongs_to :skipper
+  belongs_to :skill
 end

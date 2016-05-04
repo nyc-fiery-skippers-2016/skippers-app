@@ -1,3 +1,4 @@
 class Skipper < ActiveRecord::Base
-  # Remember to create a migration!
+  has_many :skipper_skills
+  has_many :skills, through: :skipper_skills
 end
