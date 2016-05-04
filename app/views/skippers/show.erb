@@ -1,0 +1,13 @@
+<h1>Welcome to <%= @skipper.name %>'s profile</h1>
+
+<p>
+  <%= @skipper.name %> is a Fiery Skipper with a wing span of <%= @skipper.wingspan %> inches.
+
+</p>
+
+<a href="/skippers/<%= @skipper.id %>/edit">Edit this Skipper</a>
+
+<form method="POST" action="/skippers/<%= @skipper.id %>">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="DELETE!">
+</form>

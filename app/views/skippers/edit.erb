@@ -1,0 +1,8 @@
+<h1>Editing <%= @skipper.name %>'s profile</h1>
+
+<form method="POST" action="/skippers/<%= @skipper.id %>">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="skipper[name]" placeholder="Name" value="<%= @skipper.name %>">
+  <input type="text" name="skipper[wingspan]" placeholder="Wingspan" value="<%= @skipper.wingspan %>">
+  <input type="submit" value="Update this Skipper!">
+</form>
