@@ -19,7 +19,13 @@
 </head>
 <body>
   <ul>
-    <li><a href="/skippers/new">Create a new Skipper</a></li>
+    <% if logged_in? %>
+      <li>Welcome to the site, <%= current_skipper.name %></li>
+      <li><a href="/logout">Logout</a></li>
+    <% else %>
+      <li><a href="/skippers/new">Sign up</a></li>
+      <li><a href="/login">Login</a></li>
+    <% end %>
   </ul>
   <%= yield %>
 </body>

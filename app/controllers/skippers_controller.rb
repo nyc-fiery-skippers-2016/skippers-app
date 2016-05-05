@@ -16,6 +16,7 @@ end
 # create route
 post '/skippers' do
   skipper = Skipper.create(params[:skipper])
+  session[:skipper_id] = skipper.id
   redirect "/skippers/#{skipper.id}"
 end
 
@@ -41,3 +42,12 @@ delete '/skippers/:id' do
   skipper.destroy
   redirect '/skippers'
 end
+
+get '/supersecretroute' do
+  if logged_in?
+    "ALL THE RICHES IN THE WORLD... AND SECRETS... AND THE KEY!!!!!!"
+  else
+    "YOU CANNOT ACCESS THIS ROUTE"
+  end
+end
+
