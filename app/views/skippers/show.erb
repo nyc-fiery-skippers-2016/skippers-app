@@ -1,13 +1,34 @@
 <h1>Welcome to <%= @skipper.name %>'s profile</h1>
+<div>
+  <h2>Info</h2>
+  <p>
+    <%= @skipper.name %> is a Fiery Skipper with a wing span of <%= @skipper.wingspan %> inches.
+  </p>
+</div>
+<div>
+  <h2>Skills</h2>
+  <% if @skipper.skills.any? %>
+    <ul>
+      <% @skipper.skills.each do |skill| %>
+        <li><a href="/skills/<%= skill.id %>"><%= skill.name %></a></li>
+      <% end %>
+    </ul>    
+  <% end %>
+</div>
 
-<p>
-  <%= @skipper.name %> is a Fiery Skipper with a wing span of <%= @skipper.wingspan %> inches.
-
-</p>
-
-<a href="/skippers/<%= @skipper.id %>/edit">Edit this Skipper</a>
-
-<form method="POST" action="/skippers/<%= @skipper.id %>">
-<input type="hidden" name="_method" value="DELETE">
-<input type="submit" value="DELETE!">
-</form>
+  
+<% if @skipper == current_skipper %>
+  <div>
+    <h2>Modify your skills</h2>
+    <p>Add skills as comma separated values:</p>
+    <form method="POST" action="/skippers/<%= @skipper.id %>/skills">
+      <input type="text" name="skills">
+      <input type="submit" value="Modify skills">
+    </form>
+  </div>
+  <a href="/skippers/<%= @skipper.id %>/edit">Edit this Skipper</a>
+  <form method="POST" action="/skippers/<%= @skipper.id %>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="DELETE!">
+  </form>
+<% end %>

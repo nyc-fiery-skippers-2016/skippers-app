@@ -1,0 +1,7 @@
+<h1>All current skills</h1>
+
+<ul>
+  <% @skills.each do |skill| %>
+    <li><a href="/skills/<%= skill.id %>"><%= skill.name %></a></li>
+  <% end %>
+</ul>

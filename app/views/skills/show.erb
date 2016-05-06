@@ -1,0 +1,6 @@
+<h1>Skippers with <%= @skill.name %> skills</h1>
+<ul>
+  <% @skill.skippers.each do |skipper| %>
+    <li><a href="/skippers/<%= skipper.id %>"><%= skipper.name %></a></li>
+  <% end %>
+</ul>

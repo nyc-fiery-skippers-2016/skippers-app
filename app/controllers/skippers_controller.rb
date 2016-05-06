@@ -29,11 +29,7 @@ end
 # show route
 get '/skippers/:id' do
   @skipper = Skipper.find_by(id: params[:id])
-  if @skipper == current_skipper
-    erb :'/skippers/show'
-  else
-    halt(403, "NOT AUTHORIZED")
-  end
+  erb :'/skippers/show'
 end
 
 get '/skippers/:id/edit' do
@@ -51,6 +47,12 @@ delete '/skippers/:id' do
   skipper = Skipper.find_by(id: params[:id])
   skipper.destroy
   redirect '/skippers'
+end
+
+post '/skippers/:id/skills' do
+  skipper = Skipper.find(params[:id])
+  skipper.skills = Skill.build_from_string(params[:skills])
+  redirect "/skippers/#{skipper.id}"
 end
 
 get '/supersecretroute' do
