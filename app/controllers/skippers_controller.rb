@@ -23,7 +23,11 @@ end
 # show route
 get '/skippers/:id' do
   @skipper = Skipper.find_by(id: params[:id])
-  erb :'/skippers/show'
+  if @skipper == current_skipper
+    erb :'/skippers/show'
+  else
+    halt(403, "NOT AUTHORIZED")
+  end
 end
 
 get '/skippers/:id/edit' do

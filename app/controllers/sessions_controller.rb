@@ -9,8 +9,8 @@ end
 
 # create session route
 post '/login' do
-  skipper = Skipper.find_by(name: params[:name])
-  if skipper && skipper.password == params[:password]
+  skipper = Skipper.authenticate(params[:name], params[:password]) # skipper && skipper.password == params[:password]
+  if skipper
     session[:skipper_id] = skipper.id
     redirect '/skippers'
   else

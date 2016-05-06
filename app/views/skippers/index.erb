@@ -1,7 +1,11 @@
 <% @skippers.each do |skipper| %>
   <div>
     <h1><%= skipper.name %></h1>
-    <p>Click <a href="/skippers/<%= skipper.id %>">here</a> to see <%= skipper.name %>'s profile.</p>
+    <p>Click <a href="/skippers/<%= skipper.id %>">here</a> to see <%= skipper.name %>'s profile.
+    <% if skipper == current_skipper %>
+      <a href="/skippers/<%= skipper.id %>/edit">EDIT</a>
+    <% end %>
+    </p>
 
   </div>
 <% end %>
