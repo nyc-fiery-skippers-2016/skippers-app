@@ -1,7 +1,16 @@
 <h1>Create a new Skipper</h1>
 
+<% if @errors %>
+  <ul>
+    <% @errors.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <form method="POST" action="/skippers">
   <input type="text" name="skipper[name]" placeholder="Name">
+  <input type="text" name="skipper[email]" placeholder="Email">
   <input type="password" name="skipper[password]" placeholder="Password">
   <input type="text" name="skipper[wingspan]" placeholder="Wingspan">
   <input type="submit" value="Create this Skipper!">
