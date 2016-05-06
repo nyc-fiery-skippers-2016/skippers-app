@@ -10,17 +10,18 @@ end
 
 # new route
 get '/skippers/new' do
+  @skipper = Skipper.new
   erb :'/skippers/new'
 end
 
 # create route
 post '/skippers' do
-  skipper = Skipper.new(params[:skipper])
-  if skipper.save
-    session[:skipper_id] = skipper.id
-    redirect "/skippers/#{skipper.id}"
+  @skipper = Skipper.new(params[:skipper])
+  if @skipper.save
+    session[:skipper_id] = @skipper.id
+    redirect "/skippers/#{@skipper.id}"
   else
-    @errors = skipper.errors.full_messages
+    @errors = @skipper.errors.full_messages
     erb :'/skippers/new'
   end
 end
