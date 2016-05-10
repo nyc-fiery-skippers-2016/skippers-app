@@ -1,7 +1,13 @@
 <h1>All current skills</h1>
 
-<ul>
+<h3>Create a new skill</h3>
+<form id="new-skill-form" method="POST" action="/skills">
+  <input type="text" name="name" placeholder="Skill Name">
+  <input type="submit" value="Create new skill">
+</form>
+
+<ul id="skills-list">
   <% @skills.each do |skill| %>
-    <li><a href="/skills/<%= skill.id %>"><%= skill.name %></a></li>
+    <%= erb :'/skills/_individual_skill', locals: {skill: skill} %>
   <% end %>
 </ul>
