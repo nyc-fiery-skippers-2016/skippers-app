@@ -1,4 +1,15 @@
-<h1>Skippers with <%= @skill.name %> skills</h1>
+<h1>The skill of <%= @skill.name %></h1>
+<form method="POST" action="/skills/<%= @skill.id %>/images">
+  <input type="text" name="image[url]" placeholder="Image URL">
+  <input type="text" name="image[alt_text]" placeholder="Alt text">
+  <input type="submit" value="Add image to this skill">
+</form>
+<div id="skill-image-container">
+  <% @skill.images.each do |image| %>
+    <img src="<%= image.url %>" alt="<%= image.alt_text %>" width="200">
+  <% end %>
+</div>
+<h2>Skippers with <%= @skill.name %> skills</h1>
 <ul>
   <% @skill.skippers.each do |skipper| %>
     <li><a href="/skippers/<%= skipper.id %>"><%= skipper.name %></a></li>

@@ -49,6 +49,12 @@ delete '/skippers/:id' do
   redirect '/skippers'
 end
 
+post '/skippers/:id/images' do
+  skipper = Skipper.find(params[:id])
+  skipper.images.create(params[:image])
+  redirect "/skippers/#{skipper.id}"
+end
+
 post '/skippers/:id/skills' do
   skipper = Skipper.find(params[:id])
   skipper.skills = Skill.build_from_string(params[:skills])

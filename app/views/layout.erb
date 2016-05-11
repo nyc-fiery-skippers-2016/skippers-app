@@ -20,7 +20,7 @@
 <body>
   <ul>
     <% if logged_in? %>
-      <li>Welcome to the site, <%= current_skipper.name %></li>
+      <li>Welcome to the site, <a href="/skippers/<%= current_skipper.id %>"><%= current_skipper.name %></a> </li>
       <li><a href="/logout">Logout</a></li>
     <% else %>
       <li><a href="/skippers/new">Sign up</a></li>

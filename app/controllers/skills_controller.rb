@@ -3,9 +3,16 @@ get '/skills' do
   erb :'/skills/index'
 end
 
+
 get '/skills/:id' do
   @skill = Skill.find(params[:id])
   erb :'/skills/show'
+end
+
+post '/skills/:id/images' do
+  skill = Skill.find(params[:id])
+  skill.images.create(params[:image])
+  redirect "/skills/#{skill.id}"
 end
 
 get '/skills/:id/get_skippers' do

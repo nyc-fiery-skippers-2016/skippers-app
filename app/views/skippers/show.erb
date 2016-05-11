@@ -5,6 +5,16 @@
     <%= @skipper.name %> is a Fiery Skipper with a wing span of <%= @skipper.wingspan %> inches.
   </p>
 </div>
+<form method="POST" action="/skippers/<%= @skipper.id %>/images">
+  <input type="text" name="image[url]" placeholder="Image URL">
+  <input type="text" name="image[alt_text]" placeholder="Alt text">
+  <input type="submit" value="Add image to this Skipper">
+</form>
+<div id="skipper-image-container">
+  <% @skipper.images.each do |image| %>
+    <img src="<%= image.url %>" alt="<%= image.alt_text %>" width="200">
+  <% end %>
+</div>
 <div>
   <h2>Skills</h2>
   <% if @skipper.skills.any? %>
