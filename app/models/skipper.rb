@@ -9,6 +9,16 @@ class Skipper < ActiveRecord::Base
   has_many :skills, through: :skipper_skills
   has_many :images, as: :imageable
 
+  # # longhand polymorphic has many
+  # def images
+  #   Image.where(imageable_id: self.id, imageable_type: "Skipper")
+  # end
+
+  # # longhand normal has many
+  # def images
+  #   Image.where(skipper_id: self.id)
+  # end
+
   include BCrypt
 
   def self.authenticate(name, password)
