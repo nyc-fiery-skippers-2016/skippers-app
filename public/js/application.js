@@ -16,14 +16,13 @@ $(document).ready(function() {
       // Server-side rendering version
       // Expecting HTML back from the server
       // -----------------------------------
-      $("#skills-list").append(response)
-      
+      $("#skills-list").append(response);
       // JS cloning version
       // Expecting JSON back from the server
       // -----------------------------------
-      // var el = $("#skills-list").find("li").eq(0).clone()
-      // el.find("a").text(skill.name)
-      // el.find("a").attr("href", "/skills/" + skill.id)
+      // var el = $("#skills-list").find("li").eq(0).clone();
+      // el.find("a").text(skill.name);
+      // el.find("a").attr("href", "/skills/" + skill.id);
       // $("#skills-list").append(el);
 
       // JS templating version
@@ -32,7 +31,16 @@ $(document).ready(function() {
       // var skill = JSON.parse(response)
       // $("#skills-list").append(buildSkillHTML(skill))
     });
-  })
+  });
+
+  $("#skills-list").on("click", "a", function(e) {
+    e.preventDefault();
+    var link = this;
+    $.ajax({url: this.href + "/get_skippers"}).done(function(response) {
+      console.log(response);
+    })
+    console.log("A link was clicked!");
+  });
 });
 
 function buildSkillHTML(skill) {

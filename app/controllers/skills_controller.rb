@@ -8,6 +8,12 @@ get '/skills/:id' do
   erb :'/skills/show'
 end
 
+get '/skills/:id/get_skippers' do
+  @skill = Skill.find(params[:id])
+  content_type :json
+  @skill.skippers.pluck(:name).to_json
+end
+
 post '/skills' do
   @skill = Skill.create(name: params[:name])
   if request.xhr? # AJAX is actually what's called an XMLHTTPRequest
@@ -20,3 +26,4 @@ post '/skills' do
     redirect '/skills'
   end
 end
+
