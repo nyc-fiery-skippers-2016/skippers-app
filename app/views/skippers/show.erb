@@ -5,6 +5,7 @@
     <%= @skipper.name %> is a Fiery Skipper with a wing span of <%= @skipper.wingspan %> inches.
   </p>
 </div>
+<%= erb :"/partials/_errors" %>
 <form method="POST" action="/skippers/<%= @skipper.id %>/images">
   <input type="text" name="image[url]" placeholder="Image URL">
   <input type="text" name="image[alt_text]" placeholder="Alt text">

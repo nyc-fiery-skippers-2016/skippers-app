@@ -1,12 +1,7 @@
 <h1>Create a new Skipper</h1>
 
-<% if @errors %>
-  <ul>
-    <% @errors.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= erb :"/partials/_errors" %>
+
 
 <form method="POST" action="/skippers">
   <input type="text" name="skipper[name]" placeholder="Name" value="<%= @skipper.name %>">
