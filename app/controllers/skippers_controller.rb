@@ -50,9 +50,15 @@ delete '/skippers/:id' do
 end
 
 post '/skippers/:id/images' do
-  skipper = Skipper.find(params[:id])
-  skipper.images.create(params[:image])
-  redirect "/skippers/#{skipper.id}"
+  @skipper = Skipper.find(params[:id])
+  image = Image.new(params[:image])
+  image.imageable = @skipper
+  if image.save
+    redirect "/skippers/#{@skipper.id}"
+  else
+    @errors = image.errors.full_messages
+    erb :'/skippers/show'
+  end
 end
 
 post '/skippers/:id/skills' do
