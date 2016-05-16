@@ -19,7 +19,13 @@ class Skipper < ActiveRecord::Base
   #   Image.where(skipper_id: self.id)
   # end
 
+  has_many :votes, as: :voteable
+
   include BCrypt
+
+  def net_vote_score
+    votes.sum(:value)
+  end
 
   def self.authenticate(name, password)
     skipper = self.find_by(name: name)

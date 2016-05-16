@@ -1,4 +1,24 @@
 $(document).ready(function() {
+  $("body").on("submit", ".upvote-form", function(e) {
+    e.preventDefault();
+    var votes = $(this).closest(".skipper-container").find(".vote-score").text();
+    $(this).closest(".skipper-container").find(".vote-score").text(parseInt(votes) + 1);
+    $.ajax({type: this.method, url: this.action})
+    .done(function(response) {
+      $(this).closest(".skipper-container").find(".vote-score").text(response);
+    }.bind(this));
+  });
+
+  $("body").on("submit", ".downvote-form", function(e) {
+    e.preventDefault();
+    var votes = $(this).closest(".skipper-container").find(".vote-score").text();
+    $(this).closest(".skipper-container").find(".vote-score").text(parseInt(votes) - 1);
+    $.ajax({type: this.method, url: this.action})
+    .done(function(response) {
+      $(this).closest(".skipper-container").find(".vote-score").text(response);
+    }.bind(this));
+  });
+
   $("#new-skill-form").submit(function(e) {
     e.preventDefault();
 

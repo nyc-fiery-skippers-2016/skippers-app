@@ -4,6 +4,9 @@
   <p>
     <%= @skipper.name %> is a Fiery Skipper with a wing span of <%= @skipper.wingspan %> inches.
   </p>
+  <p>
+    <%= @skipper.name %> has <%= @skipper.net_vote_score %> <%= "vote".pluralize(@skipper.net_vote_score) %>.
+  </p>
 </div>
 <%= erb :"/partials/_errors" %>
 <form method="POST" action="/skippers/<%= @skipper.id %>/images">

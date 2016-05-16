@@ -67,6 +67,26 @@ post '/skippers/:id/skills' do
   redirect "/skippers/#{skipper.id}"
 end
 
+post '/skippers/:id/upvote' do
+  skipper = Skipper.find_by(id: params[:id])
+  Vote.create_or_update_to_upvote(voteable: skipper, skipper: current_skipper)
+  if request.xhr?
+    skipper.net_vote_score.to_s
+  else
+    redirect back
+  end
+end
+
+post '/skippers/:id/downvote' do
+  skipper = Skipper.find(params[:id])
+  Vote.create_or_update_to_downvote(voteable: skipper, skipper: current_skipper)
+  if request.xhr?
+    skipper.net_vote_score.to_s
+  else
+    redirect back
+  end
+end
+
 get '/supersecretroute' do
   if logged_in?
     "ALL THE RICHES IN THE WORLD... AND SECRETS... AND THE KEY!!!!!!"

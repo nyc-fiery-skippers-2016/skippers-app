@@ -1,5 +1,5 @@
 get '/skills' do
-  @skills = Skill.all
+  @skills = Skill.by_vote_score
   erb :'/skills/index'
 end
 
@@ -34,3 +34,22 @@ post '/skills' do
   end
 end
 
+post '/skills/:id/upvote' do
+  skill = Skill.find_by(id: params[:id])
+  Vote.create_or_update_to_upvote(voteable: skill, skipper: current_skipper)
+  if request.xhr?
+    skill.net_vote_score.to_s
+  else
+    redirect back
+  end
+end
+
+post '/skills/:id/downvote' do
+  skill = Skill.find_by(id: params[:id])
+  Vote.create_or_update_to_downvote(voteable: skill, skipper: current_skipper)
+  if request.xhr?
+    skill.net_vote_score.to_s
+  else
+    redirect back
+  end
+end

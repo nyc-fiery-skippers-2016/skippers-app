@@ -1,4 +1,6 @@
 <%# there is a local variable in this scope %>
 <%# called `skill` because it got passed %>
 <%# in via `locals` in whichever scope invoked erb %>
-<li><a href="/skills/<%= skill.id %>"><%= skill.name %></a></li>
+<%= erb :_vote_buttons, locals: {resource: "skills", id: skill.id} %>
+
+<li><a href="/skills/<%= skill.id %>"><%= skill.name %></a> (<%= skill.net_vote_score %> votes)</li>
